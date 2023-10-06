@@ -14,21 +14,23 @@ const handleSelect = (key: string, keyPath: string[]) => {
         <span>MagicCreator</span>
       </div>
       <div class="header-nav">
-        <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu
+          :default-active="activeIndex"
+          :ellipsis="false"
+          router
+          class="el-menu-demo"
+          mode="horizontal"
+          @select="handleSelect"
+        >
           <el-menu-item index="intel-generation">智能生成</el-menu-item>
           <el-menu-item index="text-optimization">文案优化</el-menu-item>
-          <!-- <el-menu-item @click="open">模型体验</el-menu-item> -->
           <el-menu-item>
             <template #title>
               <a class="link" href="https://53r23232p6.goho.co" target="myIframe">
                 <span>模型体验</span>
               </a>
-              <!-- <span  v-if="targeLink(item.path)" class="icon link"  :class="item.meta.linkIcon"></span> -->
             </template>
           </el-menu-item>
-
-          <el-menu-item index="illustrate">说明</el-menu-item>
-          <el-menu-item index="illustrate">说明</el-menu-item>
           <el-menu-item index="illustrate">说明</el-menu-item>
         </el-menu>
       </div>

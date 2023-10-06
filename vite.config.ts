@@ -4,12 +4,14 @@ import path from "path";
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import viteCompression from 'vite-plugin-compression'
 
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
   console.log('mode', loadEnv(mode, process.cwd()).VITE_BASE_URL)
   return defineConfig({
+    base: './',
     plugins: [
       vue(),
       AutoImport({
@@ -17,7 +19,12 @@ export default ({ mode }) => {
       }),
       Components({
         resolvers: [ElementPlusResolver()],
-      }),],
+      }),
+      {
+        ...viteCompression(),
+        apply: 'build'
+      }
+    ],
     //这里进行配置别名
     resolve: {
       alias: {
@@ -46,7 +53,10 @@ export default ({ mode }) => {
           manualChunks: {
             vue: ['vue', 'pinia', 'vue-router'],
             elementIcons: ['@element-plus/icons-vue']
-          }
+          },
+          // chunkFileNames: "static/js/[name]-[hash].js",
+          // entryFileNames: "static/js/[name]-[hash].js",
+          // assetFileNames: "static/[ext]/[name]-[hash].[ext]",
         }
       }
     },
