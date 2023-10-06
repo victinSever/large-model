@@ -40,7 +40,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -70,7 +70,7 @@ button:focus-visible {
   text-align: center;
 } */
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -81,4 +81,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+}  */

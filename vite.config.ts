@@ -30,14 +30,14 @@ export default ({ mode }) => {
       port: 8080,
       open: true,
       https: false,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3000', //代理目标地址
-          changeOrigin: true,
-          ws: true,
-          rewrite: (path: string) => path.replace(/\/api/, '')
-        }
-      }
+      // proxy: {
+      //   '/api': {
+      //     target: 'https://53r23232p6.goho.co', //代理目标地址
+      //     changeOrigin: true,
+      //     ws: true,
+      //     rewrite: (path: string) => path.replace(/\/api/, '')
+      //   }
+      // }
     },
     // 分包
     build: {

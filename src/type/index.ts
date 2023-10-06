@@ -1,3 +1,9 @@
+export interface MessageRes<T> {
+  code: number;
+  message: string;
+  data: T;
+}
+
 export interface ChannelRowItem {
   id: number;
   channelName: string;
@@ -5,16 +11,12 @@ export interface ChannelRowItem {
 
 export interface SceneRowItem {
   id: number;
-  channelName: string;
+  sceneName: string;
 }
 
 export interface ChannelModel {
-  code: number;
-  message: string;
-  data: {
-    channel: ChannelModel[];
-    scene: SceneRowItem[];
-  };
+  channel: ChannelRowItem[];
+  scene: SceneRowItem[];
 }
 
 export interface TextParam {
@@ -25,11 +27,7 @@ export interface TextParam {
 }
 
 export interface TextModel {
-  code: number;
-  message: string;
-  data: {
-    createMsg: string[];
-  };
+  createMsg: string[];
 }
 
 export interface OptimizationParam {
@@ -37,10 +35,6 @@ export interface OptimizationParam {
 }
 
 export interface OptimizationModel {
-  code: number;
-  message: string;
-  data: {
-    suggestion: string;
-    answer: string;
-  };
+  suggestion: string;
+  answer: string;
 }

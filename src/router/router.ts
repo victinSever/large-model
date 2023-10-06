@@ -23,13 +23,6 @@ const routes = [
         },
       },
       {
-        path: '/home/model-experience',
-        component: () => import('@/pages/home/ModelExperience/index.vue'),
-        meta: {
-          title: '模型体验',
-        },
-      },
-      {
         path: '/home/illustrate',
         component: () => import('@/pages/home/Illustrate/index.vue'),
         meta: {
