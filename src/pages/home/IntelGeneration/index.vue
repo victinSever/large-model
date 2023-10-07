@@ -288,6 +288,20 @@ const handleDeleteKeyword = (keyword: string) => {
       margin-bottom: 50px;
       display: flex;
       justify-content: center;
+
+      .el-radio-button {
+        zoom: 1.5;
+      }
+
+      .el-radio-button:first-child :deep(.el-radio-button__inner) {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+
+      .el-radio-button:last-child :deep(.el-radio-button__inner) {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
     }
 
     .main-content {

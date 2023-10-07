@@ -35,7 +35,7 @@ const unFullfill = () => {
         </el-card>
       </div>
     </div>
-    <el-skeleton v-else :loading="loading" style="height: 300px" animated :rows="7" :throttle="500" />
+    <el-skeleton v-else :loading="loading" style="height: 300px" animated :rows="7" />
   </div>
 </template>
 
