@@ -1,5 +1,5 @@
 # 项目文档
-项目名：MagicCreator
+项目名：MagicCreator  
 介绍：大模型数据的前端可视化输入输出展示
 
 
