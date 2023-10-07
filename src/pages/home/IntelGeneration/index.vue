@@ -29,7 +29,8 @@ const channels = ref<ChannelRowItem[]>();
 const scenes = ref<SceneRowItem[]>();
 const tabs = lang.tabs;
 const isSubmit = ref(false);
-const isLoading = ref(false);
+const loading1 = ref(false);
+const loading2 = ref(false);
 const tab = ref('场景化文案');
 const sceneTexts = ref<string[]>([]);
 const usualTexts = ref<string[]>([]);
@@ -52,7 +53,9 @@ const getChannels = async () => {
 
 const updateText = async (isUsual?: boolean) => {
   isSubmit.value = true;
-  isLoading.value = true;
+  !isUsual ? (loading1.value = true) : (loading2.value = true);
+  console.log(loading1.value, loading2.value);
+
   sceneTitle.value = form.scene;
   const res = await createText({
     channelName: form.channel,
@@ -61,9 +64,11 @@ const updateText = async (isUsual?: boolean) => {
     feature: form.group,
   }).catch((err) => {
     ElNotification.error(err);
-    isLoading.value = false;
+    loading1.value = false;
+    loading2.value = false;
   });
-  isLoading.value = false;
+  loading1.value = false;
+  loading2.value = false;
   if (res) {
     const { data } = res.data;
     if (isUsual) {
@@ -76,7 +81,8 @@ const updateText = async (isUsual?: boolean) => {
 
 const updateTwoText = async () => {
   isSubmit.value = true;
-  isLoading.value = true;
+  loading1.value = true;
+  loading2.value = true;
   sceneTitle.value = form.scene;
   const datas = {
     channelName: form.channel,
@@ -86,9 +92,11 @@ const updateTwoText = async () => {
   };
   const res = await Promise.all([createText(datas), createText({ ...datas, sceneName: '通用' })]).catch((err) => {
     ElNotification.error(err);
-    isLoading.value = false;
+    loading1.value = false;
+    loading2.value = false;
   });
-  isLoading.value = false;
+  loading1.value = false;
+  loading2.value = false;
   if (res && res instanceof Array && res.length === 2) {
     const { data: data1 } = res[0].data;
     sceneTexts.value = data1.createMsg;
@@ -184,7 +192,7 @@ const handleDeleteKeyword = (keyword: string) => {
                 </el-tag>
               </div>
               <div class="form-btns">
-                <el-button v-loading="isLoading" type="primary" style="margin-right: 20px" @click="onSubmit"
+                <el-button v-loading="loading1 && loading2" type="primary" style="margin-right: 20px" @click="onSubmit"
                   >生成</el-button
                 >
                 <el-button type="info" @click="onReset(formRef)">重置</el-button>
@@ -201,13 +209,14 @@ const handleDeleteKeyword = (keyword: string) => {
         </el-radio-group>
       </div>
       <el-card class="main-content">
-        <el-skeleton v-if="isLoading" :rows="14" animated></el-skeleton>
         <SceneText
-          v-else-if="tab === '场景化文案'"
+          v-if="tab === '场景化文案'"
           :scene-texts="sceneTexts"
           :usual-texts="usualTexts"
           :text-title="sceneTitle"
           :is-update="isSubmit"
+          :loading1="loading1"
+          :loading2="loading2"
           @update-text="updateText"
         />
         <ContentMark v-else />

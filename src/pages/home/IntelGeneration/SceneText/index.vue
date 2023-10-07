@@ -6,6 +6,8 @@ defineProps<{
   usualTexts?: string[];
   textTitle: string;
   isUpdate: boolean;
+  loading1: boolean;
+  loading2: boolean;
 }>();
 const emit = defineEmits(['updateText']);
 
@@ -21,9 +23,10 @@ const update = (isUsual?: boolean) => {
       :text-title="textTitle"
       :is-update="false"
       :texts="sceneTexts"
+      :loading="loading1"
       @update-text="update"
     />
-    <Item text-title="通用文案" :is-update="false" :texts="usualTexts" @update-text="update" />
+    <Item text-title="通用文案" :is-update="false" :texts="usualTexts" :loading="loading2" @update-text="update" />
   </div>
 </template>
 

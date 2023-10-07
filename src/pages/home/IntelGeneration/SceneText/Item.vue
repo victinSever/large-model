@@ -6,6 +6,7 @@ defineProps<{
   texts?: string[];
   textTitle: string;
   isUpdate: boolean;
+  loading: boolean;
 }>();
 const emit = defineEmits(['updateText']);
 
@@ -18,15 +19,15 @@ const unFullfill = () => {
 </script>
 
 <template>
-  <div v-if="texts?.length !== 0" class="scene">
+  <div class="scene">
     <div class="header-scene">
       <span class="title">{{ textTitle || 'xxxx' }}</span>
-      <span class="change" @click="update(textTitle === '通用')">换一批</span>
+      <span class="change" @click="update(textTitle === '通用文案')"><el-text v-if="!loading">换一批</el-text></span>
     </div>
-    <div class="main-scene">
+    <div v-if="!loading" class="main-scene">
       <div v-for="item in texts" :key="item" class="text-item">
         <el-card class="text-box" shadow="hover">
-          <p class="text-content">{{ item }}</p>
+          <div class="text-content">{{ item }}</div>
           <div class="btns">
             <el-tag style="margin-right: 20px" @click="copy(item)">复制文案</el-tag>
             <el-tag type="danger" @click="unFullfill">不满意</el-tag>
@@ -34,12 +35,14 @@ const unFullfill = () => {
         </el-card>
       </div>
     </div>
+    <el-skeleton v-else :loading="loading" style="height: 300px" animated :rows="7" :throttle="500" />
   </div>
 </template>
 
 <style scoped lang="scss">
 .scene {
   margin-bottom: 50px;
+  min-height: 300px;
 
   .header-scene {
     height: 50px;
