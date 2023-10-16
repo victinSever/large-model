@@ -3,7 +3,10 @@ import { copy } from '@/utils/tool';
 import { ElNotification } from 'element-plus';
 
 defineProps<{
-  texts?: string[];
+  texts?: Array<{
+    text: string;
+    image: string;
+  }>;
   textTitle: string;
   isUpdate: boolean;
   loading: boolean;
@@ -25,11 +28,12 @@ const unFullfill = () => {
       <span class="change" @click="update(textTitle === '通用文案')"><el-text v-if="!loading">换一批</el-text></span>
     </div>
     <div v-if="!loading" class="main-scene">
-      <div v-for="item in texts" :key="item" class="text-item">
+      <div v-for="item in texts" :key="item.text" class="text-item">
         <el-card class="text-box" shadow="hover">
-          <div class="text-content">{{ item }}</div>
+          <div class="text-content">{{ item.text }}</div>
+          <el-image :src="item.image" style="width: 100%" class="text-image"> </el-image>
           <div class="btns">
-            <el-tag style="margin-right: 20px" @click="copy(item)">复制文案</el-tag>
+            <el-tag style="margin-right: 20px" @click="copy(item.text)">复制文案</el-tag>
             <el-tag type="danger" @click="unFullfill">不满意</el-tag>
           </div>
         </el-card>
@@ -48,9 +52,11 @@ const unFullfill = () => {
     height: 50px;
     display: flex;
     justify-content: space-between;
+
     .change {
       cursor: pointer;
       color: #777;
+
       &:hover {
         color: skyblue;
       }
@@ -73,10 +79,16 @@ const unFullfill = () => {
           white-space: break-spaces;
         }
 
+        .text-image {
+          margin: 10px 0;
+        }
+
         .btns {
           margin-top: 10px;
+
           .el-tag {
             cursor: pointer;
+
             &:hover {
               opacity: 0.8;
             }

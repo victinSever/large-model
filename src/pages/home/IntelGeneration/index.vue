@@ -32,8 +32,18 @@ const isSubmit = ref(false);
 const loading1 = ref(false);
 const loading2 = ref(false);
 const tab = ref('场景化文案');
-const sceneTexts = ref<string[]>([]);
-const usualTexts = ref<string[]>([]);
+const sceneTexts = ref<
+  Array<{
+    text: string;
+    image: string;
+  }>
+>();
+const usualTexts = ref<
+  Array<{
+    text: string;
+    image: string;
+  }>
+>();
 const sceneTitle = ref('通用');
 
 onMounted(() => getChannels());

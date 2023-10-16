@@ -27,7 +27,11 @@ export interface TextParam {
 }
 
 export interface TextModel {
-  createMsg: string[];
+  createMsg: Array<{
+    text: string;
+    image: string;
+  }>;
+  // createMsg: string[];
 }
 
 export interface OptimizationParam {

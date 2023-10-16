@@ -2,8 +2,14 @@
 import Item from './Item.vue';
 
 defineProps<{
-  sceneTexts?: string[];
-  usualTexts?: string[];
+  sceneTexts?: Array<{
+    text: string;
+    image: string;
+  }>;
+  usualTexts?: Array<{
+    text: string;
+    image: string;
+  }>;
   textTitle: string;
   isUpdate: boolean;
   loading1: boolean;
