@@ -80,7 +80,9 @@ const unFullfill = () => {
         }
 
         .text-image {
-          margin: 10px 0;
+          margin-top: 10px;
+          margin-bottom: 15px;
+          border-radius: 5px;
         }
 
         .btns {
